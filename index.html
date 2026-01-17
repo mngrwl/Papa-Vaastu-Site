@@ -207,7 +207,7 @@
 
         /* --- 5. HERO SECTION --- */
         header#hero {
-            padding-top: 140px;
+            padding-top: 60px;
             min-height: 90vh;
             display: flex;
             flex-direction: column;
@@ -229,6 +229,9 @@
 
         /* On Desktop, switch to Side-by-Side */
         @media (min-width: 900px) {
+            #hero {
+                padding-top: 140px;
+            }
             .hero-grid {
                 flex-direction: row; /* Image moves to the right */
                 text-align: left;
