@@ -14,16 +14,16 @@
         :root {
             --bg-main: #FFFFFF;
             --bg-offset: #F9F8F4; /* Very subtle warm beige */
-            --bg-artistic: radial-gradient(circle at 80% 20%, rgba(220, 210, 180, 0.4) 0%, transparent 40%),
-                           radial-gradient(circle at 10% 80%, rgba(200, 200, 200, 0.2) 0%, transparent 40%);
-            
+            --bg-artistic: 
+                radial-gradient(circle at 80% 20%, rgba(255, 249, 227, 0.5) 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
             --text-main: #1A1A1A; /* Deep Charcoal, almost black */
             --text-muted: #555555;
             
             /* Darker Gold/Bronze for readability on white */
-            --gold-primary: #B59040; 
-            --gold-dark: #8A6E2F;
-            --gold-light: #E5D2A0;
+            --gold-primary: #D4AF37; 
+            --gold-dark: #AA8439;
+            --gold-light: #FFF9E3;
 
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -166,12 +166,21 @@
             letter-spacing: -0.02em;
         }
         
-        /* Gold Gradient Text */
         .text-gold {
-            background: linear-gradient(to right, #8A6E2F, #C5A059, #8A6E2F);
+            /* A 5-point gradient creates that 'polished bar' look */
+            /* background: linear-gradient(to right, #8A6E2F, #C5A059, #8A6E2F); */
+            background: linear-gradient(
+                to right, 
+                #BF953F, 
+                #FCF6BA, 
+                #B38728, 
+                #FBF5B7, 
+                #AA771C
+            );
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            font-weight: 700;
         }
 
         .subtitle {
@@ -183,20 +192,24 @@
             font-weight: 600;
         }
 
-        /* The Gold Button (High Contrast version) */
         .btn-gold {
             display: inline-block;
-            background: linear-gradient(45deg, #B59040, #E5D2A0, #FDF5E6, #E5D2A0, #B59040);
+            background: linear-gradient(
+                45deg, 
+                #D4AF37 0%, 
+                #F7E7CE 50%, 
+                #D4AF37 100%
+            );
+            border: 1px solid #C5A059;
+            color: #1a1a1a; /* Keep text dark for prestige */
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             background-size: 300% 300%;
-            color: #000; /* Black text on gold is very legible */
             font-family: var(--font-serif);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             padding: 18px 42px;
             text-decoration: none;
-            border: 1px solid #997b3a;
-            box-shadow: 0 10px 20px rgba(181, 144, 64, 0.15);
             animation: goldShimmer 6s ease infinite;
             transition: transform 0.2s, box-shadow 0.2s;
         }
