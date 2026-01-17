@@ -7,21 +7,33 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. CORE VARIABLES & RESET --- */
+        /* --- 1. CORE VARIABLES (White/Beige/Bronze Theme) --- */
         :root {
-            --bg-dark: #050505;
-            --bg-card: #0F0F0F;
-            --gold-primary: #D4AF37;
-            --gold-light: #F7E7CE;
+            --bg-main: #FFFFFF;
+            --bg-offset: #F9F8F4; /* Very subtle warm beige */
+            --bg-artistic: radial-gradient(circle at 80% 20%, rgba(220, 210, 180, 0.4) 0%, transparent 40%),
+                           radial-gradient(circle at 10% 80%, rgba(200, 200, 200, 0.2) 0%, transparent 40%);
+            
+            --text-main: #1A1A1A; /* Deep Charcoal, almost black */
+            --text-muted: #555555;
+            
+            /* Darker Gold/Bronze for readability on white */
+            --gold-primary: #B59040; 
             --gold-dark: #8A6E2F;
-            --text-main: #E0E0E0;
-            --text-muted: #888888;
+            --gold-light: #E5D2A0;
+
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
-            --transition-speed: 0.6s;
+            
+            --nav-height: 70px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
         }
 
         * {
@@ -31,183 +43,197 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-main);
+            /* The Artistic Background Effect */
+            background-image: var(--bg-artistic);
+            background-attachment: fixed; /* Parallax feel */
             color: var(--text-main);
             font-family: var(--font-sans);
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased; /* Crucial for iPhone text crispness */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. TYPOGRAPHY & UTILITIES --- */
+        /* --- 2. NAVIGATION (Sticky Header) --- */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.85); /* Glass effect */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(181, 144, 64, 0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto; /* Allows scroll on very small phones */
+            white-space: nowrap;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 1000px;
+            justify-content: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 1px;
+            bottom: 0; left: 0;
+            background-color: var(--gold-primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover { color: var(--gold-primary); }
+        .nav-link:hover::after { width: 100%; }
+
+        /* --- 3. TYPOGRAPHY --- */
         h1, h2, h3 {
             font-family: var(--font-serif);
-            color: var(--gold-primary);
+            color: var(--text-main);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+        }
+
+        h1 {
+            color: var(--gold-dark); /* Bronze for main title */
         }
 
         h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            border-bottom: 1px solid var(--gold-dark);
             display: inline-block;
+            border-bottom: 2px solid var(--gold-light);
             padding-bottom: 10px;
         }
 
         p {
             margin-bottom: 1.5rem;
-            color: #ccc;
-            font-weight: 300;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
         .container {
             width: 90%;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
 
-        /* Gold Gradient Text Utility */
-        .text-gold {
-            background: linear-gradient(to right, var(--gold-dark), var(--gold-primary), var(--gold-light), var(--gold-primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200%;
-            animation: shine 5s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        /* --- 3. ANIMATION CLASSES (Scroll Reveal) --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- 4. SECTIONS --- */
-
-        /* Hero Section */
+        /* --- 4. HERO SECTION --- */
         header {
-            height: 90vh; /* Mobile first full height */
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
             position: relative;
-            border-bottom: 1px solid var(--gold-dark);
+            /* Subtle marble texture overlay */
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
         }
 
         .hero-border {
             position: absolute;
-            top: 20px; left: 20px; right: 20px; bottom: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .hero-content {
-            z-index: 2;
-            padding: 0 20px;
+            top: 30px; left: 30px; right: 30px; bottom: 30px;
+            border: 1px solid rgba(181, 144, 64, 0.2);
+            z-index: -1;
         }
 
         h1 {
             font-size: 3rem;
             line-height: 1.1;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Gold Gradient Text */
+        .text-gold {
+            background: linear-gradient(to right, #8A6E2F, #C5A059, #8A6E2F);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .subtitle {
-            font-size: 1rem;
-            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: var(--gold-light);
+            color: var(--text-muted);
             margin-bottom: 2rem;
+            font-weight: 600;
         }
 
-        /* The TRUMP STYLE Button */
+        /* The Gold Button (High Contrast version) */
         .btn-gold {
             display: inline-block;
-            background: linear-gradient(45deg, #8a642d, #d4af37, #fcf6ba, #d4af37, #8a642d);
+            background: linear-gradient(45deg, #B59040, #E5D2A0, #FDF5E6, #E5D2A0, #B59040);
             background-size: 300% 300%;
-            color: #000;
+            color: #000; /* Black text on gold is very legible */
             font-family: var(--font-serif);
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            padding: 18px 40px;
+            padding: 18px 42px;
             text-decoration: none;
-            border: 1px solid #000;
-            border-radius: 0px; /* Sharp corners = Authority */
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            border: 1px solid #997b3a;
+            box-shadow: 0 10px 20px rgba(181, 144, 64, 0.15);
             animation: goldShimmer 6s ease infinite;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .btn-gold:active {
-            transform: scale(0.96);
-        }
-
+        .btn-gold:active { transform: scale(0.97); }
+        
         @keyframes goldShimmer {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Backstory / Heritage */
-        #heritage {
-            background-color: var(--bg-dark);
-        }
-
-        .bio-grid {
-            border-left: 2px solid var(--gold-dark);
-            padding-left: 20px;
-        }
-
-        /* Services */
-        #services {
-            background-color: var(--bg-card);
-        }
+        /* --- 5. CONTENT SECTIONS --- */
+        
+        /* Section Backgrounds */
+        .section-light { background-color: transparent; }
+        .section-offset { background-color: rgba(249, 248, 244, 0.7); border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
 
         .service-card {
-            background: #050505;
-            border: 1px solid #222;
-            padding: 2rem;
+            background: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            padding: 2.5rem;
             margin-bottom: 1.5rem;
-            position: relative;
-            transition: border-color 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+            border-left: 3px solid var(--gold-primary);
         }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 40px; height: 1px;
-            background: var(--gold-primary);
-        }
-
+        
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
-            color: var(--gold-light);
+            color: var(--gold-dark);
         }
 
-        /* FAQ Accordion */
+        /* Accordion (Oracle) */
         .accordion-item {
-            border-bottom: 1px solid #222;
-            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
         }
 
         .accordion-header {
@@ -216,65 +242,55 @@
             background: none;
             border: none;
             padding: 20px 0;
-            color: var(--gold-primary);
+            color: var(--text-main);
             font-family: var(--font-serif);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            font-weight: 600;
         }
 
         .accordion-header::after {
             content: '+';
-            font-size: 1.5rem;
-            color: var(--gold-dark);
+            color: var(--gold-primary);
         }
-
-        .accordion-header.active::after {
-            content: '-';
-        }
+        
+        .accordion-header.active::after { content: '-'; }
 
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease-out;
-            padding-right: 10px;
+            color: var(--text-muted);
         }
 
         /* Contact */
-        #contact {
+        .contact-box {
+            background: #fff;
+            padding: 3rem;
+            border: 1px solid var(--gold-light);
             text-align: center;
-            padding-bottom: 6rem;
-            background: linear-gradient(to top, #111 0%, #050505 100%);
-        }
-
-        .contact-links {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .contact-item {
-            color: var(--gold-light);
-            text-decoration: none;
-            font-size: 1.2rem;
-            border-bottom: 1px solid transparent;
-            transition: 0.3s;
-        }
-
-        .contact-item:hover {
-            border-bottom: 1px solid var(--gold-primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         footer {
             text-align: center;
             padding: 2rem;
             font-size: 0.8rem;
-            color: #444;
-            border-top: 1px solid #111;
+            color: #999;
+            background-color: #fafafa;
+        }
+
+        /* --- 6. ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Desktop Adjustments */
@@ -283,38 +299,48 @@
             .service-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                gap: 20px;
+                gap: 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <nav>
+        <div class="nav-container">
+            <a href="#hero" class="nav-link">Home</a>
+            <a href="#heritage" class="nav-link">Pedigree</a>
+            <a href="#services" class="nav-link">Practice</a>
+            <a href="#faq" class="nav-link">Oracle</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <header id="hero">
         <div class="hero-border"></div>
-        <div class="hero-content reveal">
+        <div class="container reveal">
             <p class="subtitle">The Royal Science of Alignment</p>
             <h1>Architecting<br><span class="text-gold">Destiny</span></h1>
-            <p style="max-width: 400px; margin: 0 auto 30px auto;">Precision Vaastu for those who build empires, not just houses.</p>
+            <p style="max-width: 450px; margin: 0 auto 30px auto; color: #555;">
+                Precision Vaastu for those who build empires. 
+                Merging ancient calculation with modern dominance.
+            </p>
             <a href="#contact" class="btn-gold">Consult</a>
         </div>
     </header>
 
-    <section id="heritage">
+    <section id="heritage" class="section-offset">
         <div class="container">
             <h2 class="reveal">The Pedigree</h2>
-            <div class="bio-grid reveal">
-                <p><strong>Energy is the ultimate currency.</strong> In a world of chaos, the sovereign individual commands their environment.</p>
-                <p>I do not simply rearrange furniture. I align your physical dominion with the geomagnetic forces of prosperity. With over two decades advising global leaders and industrial magnates, my practice is rooted in the ancient, uncompromising texts of the <em>Vastu Shastra</em>, applied with modern architectural precision.</p>
+            <div class="reveal" style="border-left: 2px solid var(--gold-primary); padding-left: 25px; margin-top: 20px;">
+                <p><strong>Energy is the ultimate currency.</strong> In a volatile world, the sovereign individual commands their environment.</p>
+                <p>I do not simply rearrange furniture. I align your physical dominion with geomagnetic forces. With over two decades advising global leaders, my practice is rooted in the uncompromising texts of the <em>Vastu Shastra</em>.</p>
                 <p>We do not guess. We calculate.</p>
-                <div style="margin-top: 2rem;">
-                    <span style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--gold-primary);">The Consultant</span>
-                </div>
             </div>
         </div>
     </section>
 
-    <section id="services">
+    <section id="services" class="section-light">
         <div class="container">
             <h2 class="reveal">The Practice</h2>
             <div class="service-grid">
@@ -324,51 +350,51 @@
                 </div>
                 <div class="service-card reveal">
                     <h3>Commercial Dominion</h3>
-                    <p>Strategic alignment for HQs and offices. Remove invisible friction that stifles growth and revenue.</p>
+                    <p>Strategic alignment for HQs. Remove invisible friction that stifles growth and revenue.</p>
                 </div>
                 <div class="service-card reveal">
                     <h3>Site Selection</h3>
-                    <p>The most critical decision is made before the first brick is laid. Analysis of soil, slope, and direction.</p>
+                    <p>The most critical decision is made before the first stone is laid. Analysis of soil, slope, and direction.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="faq">
+    <section id="faq" class="section-offset">
         <div class="container">
             <h2 class="reveal">The Oracle</h2>
-            
             <div class="accordion reveal">
                 <div class="accordion-item">
                     <button class="accordion-header">Does this require demolition?</button>
                     <div class="accordion-content">
-                        <p>Not always. True mastery lies in subtle correction. We utilize elemental balancing and precise geometric shifts. Structural changes are a last resort, not a requirement.</p>
+                        <p style="padding-top: 10px;">Not always. True mastery lies in subtle correction. We utilize elemental balancing and precise geometric shifts.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-header">How quickly do results manifest?</button>
                     <div class="accordion-content">
-                        <p>Energy moves at the speed of alignment. Clients often report a shift in clarity and opportunity within 45 days of implementation.</p>
+                        <p style="padding-top: 10px;">Energy moves at the speed of alignment. Clients often report a shift in clarity within 45 days.</p>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <button class="accordion-header">Do you work remotely?</button>
                     <div class="accordion-content">
-                        <p>Yes. Using satellite topography and precise architectural blueprints, we can analyze any coordinate on the globe with absolute accuracy.</p>
+                        <p style="padding-top: 10px;">Yes. Using satellite topography and blueprints, we can analyze any coordinate with absolute accuracy.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="section-light">
         <div class="container reveal">
-            <h2 style="border: none;">Secure Your Legacy</h2>
-            <p>Serious inquiries only. The schedule is strictly limited.</p>
-            
-            <div class="contact-links">
+            <div class="contact-box">
+                <h2 style="border: none; font-size: 1.8rem;">Secure Your Legacy</h2>
+                <p>Serious inquiries only. The schedule is strictly limited.</p>
+                <br>
                 <a href="https://wa.me/1234567890" class="btn-gold">WhatsApp Direct</a>
-                <a href="mailto:office@sovereignvaastu.com" class="contact-item">office@sovereignvaastu.com</a>
+                <br><br>
+                <a href="mailto:office@sovereignvaastu.com" style="color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid #ddd;">office@sovereignvaastu.com</a>
             </div>
         </div>
     </section>
@@ -378,33 +404,22 @@
     </footer>
 
     <script>
-        // 1. Scroll Reveal Animation
-        // This watches for elements to enter the screen and adds the 'active' class
-        const observerOptions = {
-            threshold: 0.15 // Trigger when 15% of element is visible
-        };
-
+        // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // 2. Accordion Logic
-        // Handles the opening and closing of FAQ items smoothly
-        const accordions = document.querySelectorAll('.accordion-header');
-
-        accordions.forEach(acc => {
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(acc => {
             acc.addEventListener('click', function() {
                 this.classList.toggle('active');
                 const panel = this.nextElementSibling;
-                
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
