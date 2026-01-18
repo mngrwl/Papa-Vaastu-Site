@@ -78,7 +78,7 @@
         }
 
         .nav-logo {
-            font-family: var(--font-serif);
+            font-family: var(--font-sans);
             font-weight: 700;
             letter-spacing: 0.2em;
             color: #AA8439;
@@ -347,6 +347,45 @@
             text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
+        .contact-box h2 {
+            padding-top: 20px;
+            padding-bottom: 0;
+        }
+
+        /* --- CIRCULAR FRAME STYLING --- */
+        .circle-image-wrapper {
+            position: relative;
+            width: 220px;  /* Set a fixed size for the circle */
+            height: 220px; /* Must match width for a perfect circle */
+            padding: 8px;  /* Space between gold border and image */
+            background: #fff;
+            border: 1px solid #D4AF37;
+            border-radius: 50%; /* Makes the frame circular */
+            
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15);
+            margin: 0 auto;
+            overflow: hidden; /* Ensures nothing spills out of the circle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* Makes the image circular */
+            object-fit: cover;  /* Crops the image to fit the circle without stretching */
+            object-position: center top; /* Focuses on the face if the image is tall */
+            display: block;
+        }
+
+        @media (max-width: 400px) {
+            .circle-image-wrapper {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
         footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #999; background-color: #fafafa; }
 
         /* --- 8. ANIMATIONS (Scroll Reveal) --- */
@@ -401,7 +440,7 @@
                     Experience Precision Vaastu with
                     <strong>Acharya Pramod Agarwal</strong>.
                     <br><br>
-                    Merging ancient wisdom with modern convenience for sovereign living.
+                    Merging ancient wisdom with modern convenience.
                 </p>
             </div>
 
@@ -490,6 +529,9 @@
     <section id="contact" class="section-light">
         <div class="container reveal">
             <div class="contact-box">
+                <div class="circle-image-wrapper">
+                    <img src="images/medal.jpg" alt="Acharya Pramod Agarwal Headshot">
+                </div>
                 <h2 style="border: none; font-size: 1.8rem;">Take the First Step</h2>
                 <p>Serious inquiries only. The schedule is strictly limited.</p>
                 <br>
