@@ -258,18 +258,22 @@
         }
 
         .text-gold {
-            background: linear-gradient(
-                to right, 
-                #BF953F, 
-                #fcf6ba, 
-                #B38728, 
-                #fbe8b7, 
-                #AA771C
-            );
+            background: linear-gradient(to right, #de8e00, #fbd000, #de8e00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 700;
+            
+            /* THE EMBOSS EFFECT */
+            /* 1. The light 'rim' highlight (top-left) */
+            /* 2. The deep shadow (bottom-right) */
+            filter: 
+                drop-shadow(2px 2px 1px rgba(255, 255, 255, 0.8)) /* The bright bottom edge */
+                drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.4));
+            
+            /* Extra refinement for visibility */
+            display: inline-block;
+            padding-bottom: 5px; /* Prevents shadow from being cut off */
         }
 
         .subtitle {
@@ -408,7 +412,7 @@
             <div class="nav-links-desktop">
                 <a href="#hero" class="nav-link">Home</a>
                 <a href="#heritage" class="nav-link">The Story</a>
-                <a href="#services" class="nav-link">Practice</a>
+                <a href="#services" class="nav-link">Approach</a>
                 <a href="#faq" class="nav-link">FAQ</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -438,7 +442,7 @@
                 </h1>
                 <p style="color: #555; margin-bottom: 2rem; max-width: 500px;">
                     Experience Precision Vaastu with
-                    <strong>Acharya Pramod Agarwal</strong>.
+                    <strong>Pramod Agarwal</strong>.
                     <br><br>
                     Merging ancient wisdom with modern convenience.
                 </p>
@@ -446,7 +450,7 @@
 
             <div class="hero-image reveal">
                 <div class="framed-image-wrapper">
-                    <img src="images/dp.png" alt="Acharya Pramod Agarwal Headshot">
+                    <img src="images/dp.png" alt="Pramod Agarwal Headshot">
                 </div>
             </div>
 
@@ -463,36 +467,33 @@
             
             <div class="story-grid">
                 <div class="story-content reveal">
-                    <p>Before Acharya Pramod was a vaastu consultant, he was a lifelong <strong>Aircraft Engineer</strong> who served 40 years at Air India, 
-                        leading international projects and teams as Chief Engineer. He has received accolades in engineering as well as an MBA degree.</p>
+                    <p>Before stepping into the role of a Vaastu and astro consultant and astrology Pramod spent his entire career as an aircraft engineer. 
+                        He served with a leading international airline, where he handled major projects on Airbus and Boeing aircraft and led teams in senior leadership roles, eventually superannuating as General Manager. 
+                        He also holds a PGD in MBA. </p>
                     <br>
-                    <p>After retiring as the overall <strong>General Manager of Air India Engineering</strong>, he became a dedicated scholar of the ancient Indian sciences.</p>
+                    <p>After retiring he became a dedicated scholar of the ancient Indian sciences.</p>
                     <br>
                     <p>Today he offers unique "precision vaastu" consulting that combines a deep knowledge of vaastu, astrology, palmistry, and numerology.</p>
                 </div>
 
-                <div class="story-image reveal">
+                <!-- <div class="story-image reveal">
                     <div class="framed-image-wrapper">
                         <img src="images/airindia.png" alt="Engineering Background">
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
 
     <section id="services" class="section-light">
         <div class="container">
-            <h2 class="reveal">The Practice</h2>
-            <div class="service-grid">
+            <h2 class="reveal">Approach</h2>
                 <div class="service-card reveal">
-                    <h3>Vaastu Consulting — "Home Doctor"</h3>
-                    <p>Your home should be a place of peace and progress. We will analyze your home’s layout and ensure alignment with natural elements (Panch Bhoota) and energy. This helps improve family health, reduces stress, and invites financial growth.</p>
+                    <h3>Vaastu and Astrology</h3>
+                    <p>Vaastu is for space, astrology is for the person. When combined, results become precise and effective.</p>
+                    <br>
+                    <p>Customized consultation always works better than generic remedies.</p>
                 </div>
-                <div class="service-card reveal">
-                    <h3>Astrology Consulting</h3>
-                    <p>Detailed chart analysis can help you better understand your family members. Guiding children toward the right career paths, ensuring compatibility in marriage, or identifying the most auspicious periods for major life decisions, we use astrology to foster deeper bonds and lifelong harmony.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -504,12 +505,6 @@
                     <button class="accordion-header">Does vaastu require demolition?</button>
                     <div class="accordion-content">
                         <p style="padding-top: 10px;">No. It is a myth. There are countless ways to use vaastu that don't require any demolition, renovation, or construction.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">How quickly do results manifest?</button>
-                    <div class="accordion-content">
-                        <p style="padding-top: 10px;">.....</p>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -531,9 +526,12 @@
                 <h2 style="border: none; font-size: 1.8rem;">Take the First Step</h2>
                 <p>Serious inquiries only. The schedule is strictly limited.</p>
                 <br>
-                <a href="https://wa.me/1234567890" class="btn-gold">WhatsApp Direct</a>
+                <a href="https://wa.me/9217355095" class="btn-gold">WhatsApp Direct</a>
                 <br><br>
+                <p>For scheduling:</p>
                 <a href="mailto:secretary@vastudivya.com" style="color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid #ddd;">secretary@vastudivya.com</a>
+                <p>For payments:</p>
+                <a href="mailto:secretary@vastudivya.com" style="color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid #ddd;">accounting@vastudivya.com</a>
             </div>
         </div>
     </section>
