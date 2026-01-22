@@ -422,6 +422,34 @@
             .hamburger { display: none; }
             h1 { font-size: 4.5rem; }
         }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .instagram-link {
+            color: #555; /* Subtle dark grey initial state */
+            transition: color 0.4s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .instagram-link svg {
+            width: 28px;  /* Elegant, readable size */
+            height: 28px;
+        }
+
+        .instagram-link:hover {
+            color: #D4AF37; /* Shifts to your gold on hover */
+            transform: translateY(-3px); /* Gentle lift effect */
+        }
+
+        #ig_handle {
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -553,7 +581,21 @@
                 <a href="mailto:pramod.agarwal@vastudivya.com" style="color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid #ddd;">pramod.agarwal@vastudivya.com</a>
                 <br>
                 <a href="mailto:office@vastudivya.com" style="color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid #ddd;">office@vastudivya.com</a>
+                <br><br>
+                <div class="social-links">
+                    <a href="https://instagram.com/vastu_divya" class="instagram-link" target="_blank" aria-label="Follow on Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a id="ig_handle" href="https://instagram.com/vastu_divya" class="instagram-link" target="_blank" aria-label="Follow on Instagram">
+                        <span>@vastu_divya</span>
+                    </a>
+                </div>
             </div>
+
         </div>
     </section>
 
